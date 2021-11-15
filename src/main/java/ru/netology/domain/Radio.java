@@ -2,21 +2,20 @@ package ru.netology.domain;
 
 public class Radio {
     private int currentStation;
+    private int currentVolume;
 
-    public void setNextStation(int currentStation) {
+
+
+    public void increaseStation() {
         if (currentStation < 9) {
             this.currentStation = currentStation + 1;
         }
-        if (currentStation > 9) {
+        if (currentStation >= 9) {
             this.currentStation = 0;
         }
     }
 
-    public int getNextStation() {
-        return currentStation;
-    }
-
-    public void setPreviousStation(int currentStation) {
+    public void decreaseStation() {
         if (currentStation > 0) {
             this.currentStation = currentStation - 1;
         }
@@ -25,10 +24,7 @@ public class Radio {
         }
     }
 
-    public int getPreviousStation() {
-        return currentStation;
-    }
-    public void setCurrentStation(int currentStation) {
+    public void setupStation() {
         if (currentStation < 0) {
             return;
         }
@@ -38,26 +34,18 @@ public class Radio {
         this.currentStation = currentStation;
     }
 
-    public int getCurrentStation() {
-        return currentStation;
-    }
 
-    private int currentVolume;
-
-    public void increaseVolume(int currentVolume){
+    public void increaseVolume(){
         if (currentVolume < 10) {
             this.currentVolume = currentVolume + 1;
         }
         if (currentVolume > 10){
-            return;
+            currentVolume = 0;
         }
     }
 
-    public int getIncreaseVolume(){
-        return currentVolume;
-    }
 
-    public void decreaseVolume(int currentVolume){
+    public void decreaseVolume(){
         if(currentVolume > 0){
             this.currentVolume=currentVolume - 1;
         }
@@ -65,8 +53,21 @@ public class Radio {
             return;
         }
     }
-    public int getDecreaseVolume(){
+    public int getCurrentStation() {
+        return currentStation;
+    }
+
+
+    public void setCurrentStation(int currentStation) {
+        this.currentStation = currentStation;
+    }
+
+    public int getCurrentVolume() {
         return currentVolume;
+    }
+
+    public void setCurrentVolume(int currentVolume) {
+        this.currentVolume = currentVolume;
     }
 
 }
