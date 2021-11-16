@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import ru.netology.domain.Radio;
+
 public class RadioTest {
 
     @Test
@@ -26,16 +28,7 @@ public class RadioTest {
         int actual = radio.getCurrentStation();
         assertEquals(expected,actual);
     }
-    @Test
-    public void shouldSwitchNextStationAfterTen() {
-        Radio radio = new Radio();
-        radio.setCurrentStation(10);
-        radio.increaseStation();
 
-        int expected = 0;
-        int actual = radio.getCurrentStation();
-        assertEquals(expected,actual);
-    }
     @Test
     public void shouldSwitchNextStationAfterEight() {
         Radio radio = new Radio();
@@ -46,6 +39,18 @@ public class RadioTest {
         int actual = radio.getCurrentStation();
         assertEquals(expected,actual);
     }
+
+    @Test
+    public void shouldSwitchNextStationAfterSeven() {
+        Radio radio = new Radio();
+        radio.setCurrentStation(7);
+        radio.increaseStation();
+
+        int expected = 8;
+        int actual = radio.getCurrentStation();
+        assertEquals(expected,actual);
+    }
+
     @Test
     public void shouldSwitchPreviousStation() {
         Radio radio = new Radio();
@@ -87,10 +92,9 @@ public class RadioTest {
         assertEquals(expected,actual);
     }
     @Test
-    public void shouldSwitchCurrentStation() {
+    public void shouldSwitchStation() {
         Radio radio = new Radio();
-        radio.setCurrentStation(5);
-        radio.setupStation();
+        radio.setSwitchStation(5);
 
         int expected = 5;
         int actual = radio.getCurrentStation();
@@ -99,8 +103,7 @@ public class RadioTest {
     @Test
     public void shouldNotSwitchCurrentStationOverLimit() {
         Radio radio = new Radio();
-        radio.setCurrentStation(10);
-        radio.setupStation();
+        radio.setSwitchStation(10);
 
         int expected = 0;
         int actual = radio.getCurrentStation();
@@ -109,8 +112,8 @@ public class RadioTest {
     @Test
     public void shouldNotSwitchCurrentStationUnderLimit() {
         Radio radio = new Radio();
-        radio.setCurrentStation(-1);
-        radio.setupStation();
+        radio.setSwitchStation(-1);
+
 
         int expected = 0;
         int actual = radio.getCurrentStation();
@@ -119,8 +122,7 @@ public class RadioTest {
     @Test
     public void shouldSwitchCurrentStationUpperLimitValue() {
         Radio radio = new Radio();
-        radio.setCurrentStation(9);
-        radio.setupStation();
+        radio.setSwitchStation(9);
 
         int expected = 9;
         int actual = radio.getCurrentStation();
@@ -129,8 +131,7 @@ public class RadioTest {
     @Test
     public void shouldSwitchCurrentStationLowerLimitValue() {
         Radio radio = new Radio();
-        radio.setCurrentStation(0);
-        radio.setupStation();
+        radio.setSwitchStation(0);
 
         int expected = 0;
         int actual = radio.getCurrentStation();
