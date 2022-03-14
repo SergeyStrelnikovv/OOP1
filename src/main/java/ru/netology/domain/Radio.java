@@ -1,80 +1,79 @@
 package ru.netology.domain;
 
 public class Radio {
-
     private int currentStation;
-    private int volume;
+    private int currentVolume;
+
+    public int setToMaxStation() {
+        currentStation = 9;
+        return 0;
+    }
+
+    public int setToMinStation() {
+        currentStation = 0;
+        return 0;
+    }
 
     public int getCurrentStation() {
         return currentStation;
     }
 
     public int getCurrentVolume() {
-        return volume;
-    }
-
-    public void setToMaxStation() {
-        this.currentStation = 9;
-    }
-
-    public void setToMinStation() {
-        this.currentStation = 0;
+        return currentVolume;
     }
 
 
-    public void setCurrentStation(int currentStation) {
-        if (currentStation > 9) {
+    // Работа с радиостанциями:
+    public void nextTransferStation(int currentStation) {
+        if (currentStation == 9) {
+            currentStation = setToMinStation();
             return;
         }
-        if (currentStation < 0) {
-            return;
-        }
+        currentStation++;
+
         this.currentStation = currentStation;
-    }
 
-    public void increaseStation() {
+    } //Переключаем на +1 станцию
 
-        if (currentStation < 9) {
-            currentStation = currentStation + 1;
-            return;
-        }
-
-        this.currentStation = 0;
-    }
-
-
-
-
-    public void prevStation() {
-        if (currentStation > 1) {
-            currentStation = currentStation - 1;
-        }
+    public void prevCurrentStation(int currentStation) {
         if (currentStation == 0) {
-            this.currentStation = 9;
-        }
-    }
-
-
-    public void setCurrentVolume(int volume) {
-        if (volume > 10) {
+            currentStation = setToMaxStation();
             return;
         }
-        if (volume < 0) {
+        currentStation--;
+
+        this.currentStation = currentStation;
+    } //Переключаем на -1 станцию
+
+    public void setCurrentStation(int newCurrentStation) {
+        if (newCurrentStation > 9) {
             return;
         }
-        this.volume = volume;
-    }
-
-    public void increaseVolume() {
-        if (volume < 10) {
-            volume = volume + 1;
+        if (newCurrentStation < 0) {
+            return;
         }
-    }
+        currentStation = newCurrentStation;
+    } //Устанавливаем конкретную станцию
 
-    public void lowerVolume() {
-        if (volume > 0) {
-            volume = volume - 1;
+    // Работа с уровнем громкости звука:
+    public void IncreaseVolume(int currentVolume) {
+        if (currentVolume < 10) {
+            currentVolume++;
         }
-    }
+        if (currentVolume > 10) {
+            currentVolume = 10;
+        }
+        this.currentVolume = currentVolume;
+    } //Прибавляем уровень звука
+
+    public void DecreaseVolume(int currentVolume) {
+        if (currentVolume > 0) {
+            currentVolume--;
+        }
+        if (currentVolume > 10) {
+            return;
+        }
+        this.currentVolume = currentVolume;
+    } //Уменьшаем уровень звука
+
 }
-
