@@ -1,46 +1,28 @@
 package ru.netology.domain;
 
 public class Radio {
+
     private int currentStation;
-    private int currentVolume;
+    private int volume;
 
     public int getCurrentStation() {
         return currentStation;
     }
 
-    public void setCurrentStation(int currentStation) {
-        this.currentStation = currentStation;
-    }
-
-
     public int getCurrentVolume() {
-        return currentVolume;
+        return volume;
     }
 
-    public void setCurrentVolume(int currentVolume) {
-        this.currentVolume = currentVolume;
+    public void setToMaxStation() {
+        this.currentStation = 9;
     }
 
-    public void increaseStation() {
-
-        if (currentStation < 9) {
-            this.currentStation = currentStation + 1;
-        }
-        else //if (currentStation == 9) {
-            currentStation = 0;
-
-
+    public void setToMinStation() {
+        this.currentStation = 0;
     }
 
-    public void decreaseStation() {
-        if (currentStation > 0) {
-            this.currentStation = currentStation - 1;
-        }
-        else //if (currentStation <= 0) {
-            this.currentStation = 9;
 
-    }
-    public void setSwitchStation(int currentStation){
+    public void setCurrentStation(int currentStation) {
         if (currentStation > 9) {
             return;
         }
@@ -50,24 +32,49 @@ public class Radio {
         this.currentStation = currentStation;
     }
 
+    public void increaseStation() {
 
+        if (currentStation < 9) {
+            currentStation = currentStation + 1;
+            return;
+        }
+
+        this.currentStation = 0;
+    }
+
+
+
+
+    public void prevStation() {
+        if (currentStation > 1) {
+            currentStation = currentStation - 1;
+        }
+        if (currentStation == 0) {
+            this.currentStation = 9;
+        }
+    }
+
+
+    public void setCurrentVolume(int volume) {
+        if (volume > 10) {
+            return;
+        }
+        if (volume < 0) {
+            return;
+        }
+        this.volume = volume;
+    }
 
     public void increaseVolume() {
-        if (currentVolume < 10) {
-            this.currentVolume = currentVolume + 1;
-        } else //if (currentVolume >= 10) {
-            currentVolume = 0;
-
+        if (volume < 10) {
+            volume = volume + 1;
+        }
     }
 
-
-    public void decreaseVolume() {
-        if (currentVolume > 0) {
-            this.currentVolume = currentVolume - 1;
-        } else //if (currentVolume <= 0) {
-            currentVolume = 0;
-
+    public void lowerVolume() {
+        if (volume > 0) {
+            volume = volume - 1;
+        }
     }
-
-
 }
+
