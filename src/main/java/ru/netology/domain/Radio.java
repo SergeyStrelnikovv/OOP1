@@ -38,8 +38,11 @@ public class Radio {
             currentStation = currentStation + 1;
             return;
         }
+
         this.currentStation = 0;
     }
+
+
 
 
     public void prevStation() {
